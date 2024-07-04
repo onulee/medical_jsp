@@ -23,34 +23,30 @@
 	   </tr>
 	   <tr>
 	     <td>아이디</td>
-	     <td><%= request.getParameter("id") %></td>
+	     <td>${param.id }</td>
 	   </tr>
 	   <tr>
 	     <td>패스워드</td>
-	     <td><%=request.getParameter("pw") %></td>
+	     <td>${param.pw }</td>
 	   </tr>
 	   <tr>
 	     <td>이름</td>
-	     <td><%= request.getParameter("name") %></td>
+	     <td>${param.name }</td>
 	   </tr>
 	   <tr>
 	     <td>성별</td>
-	     <td><%= request.getParameter("gender") %></td>
+	     <td>${param.gender }</td>
+	   </tr>
+	   <tr>
+	     <td>취미</td>
+	     <td>${paramValues.hobby[0] }</td>
+	   </tr>
+	   <tr>
+	     <td>취미</td>
+	     <td>${paramValues.hobby[1] }</td>
 	   </tr>
 	   
-	   <% for(int i=0;i<hobby.length;i++){  %>
-		   <tr>
-		     <td>취미</td>
-		     <td><%= hobby[i] %></td>
-		   </tr>
-	   <%} %>
 	   
-	   
-	   <% if(10>0){ %>
-	    	  
-	   <% }else{ %>
-	    	  
-	   <% } %>
 	  
 	
 	</table>
