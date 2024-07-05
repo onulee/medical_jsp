@@ -56,7 +56,7 @@
       </ul>  
     </article>
 
-    <form action="/login" name="login" method="post">
+    <form action="doLogin.do" name="login" method="post">
       <div class="id">
         <input type="text" name="id" size="30" placeholder="CJ ONE 통합아이디 6~20자">
       </div>

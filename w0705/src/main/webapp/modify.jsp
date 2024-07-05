@@ -1,25 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>      
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pages - modify</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/read.css">
-  <style>.list a{cursor: pointer;}</style>
-  <script type="text/javascript">
-    function deleteBtn(){
-    	if(confirm("게시글을 삭제하시겠습니까?")){
-    		location.href = "delete.do?bno=${board.bno}";
-    	}
-    }
-  </script>
+  <link rel="stylesheet" href="css/write.css">
 </head>
 
 <body>
@@ -34,7 +23,7 @@
   </header>
 
   <nav>
-    <a href="index.do"><div class="logo"></div></a>
+    <div class="logo"></div>
 
     <div id="search">
       <div class="search"></div><br>
@@ -58,30 +47,54 @@
   </nav>
 
   <section>
-    <h1>NOTICE</h1>
+    <h1>관리자 수정하기</h1>
+    <hr>
 
-    <table>
-      <tr>
-        <th>제목 : ${board.btitle }</th>
-      </tr>
-      <tr>
-        <td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/></td>
-      </tr>
-      <tr>
-        <td class="article">
-          ${board.bcontent}<br>
-      </tr>
-      <tr>
-        <td><strong>다음글</strong> <span class="separator">|</span> [키즈잼] 2월 프로그램 안내</td>
-      </tr>
-      <tr>
-        <td><strong>이전글</strong> <span class="separator">|</span> [키즈잼] 2020년 1분기 정기 휴관일 안내</td>
-      </tr>
-    </table>
+    <form action="doModify.do" name="write" method="post">
+      <input type="hidden" name="bno" value="${board.bno}">
+      <input type="hidden" name="bfile" value="${board.bfile}">
+      <table>
+        <colgroup>
+          <col width="15%">
+          <col width="85%">
+        </colgroup>
+        <tr>
+          <th>분류</th>
+          <td>
+            <div class="category-wrapper">
+              <select name="category" id="category">
+                <option value="notice">공지</option>
+                <option value="event">이벤트</option>
+              </select>  
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>제목</th>
+          <td>
+            <input type="text" name="btitle" value="${board.btitle}">
+          </td>
+        </tr>
+        <tr>
+          <th>내용</th>
+          <td>
+            <textarea name="bcontent" cols="50" rows="10">${board.bcontent}</textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>이미지 표시</th>
+          <td>
+            <input type="file" name="file" id="file">
+          </td>
+        </tr>
+      </table>
+      <hr>
+      <div class="button-wrapper">
+        <button type="submit" class="write">작성완료</button>
+        <button type="button" class="cancel">취소</button>
+      </div>
+    </form>
 
-    <div class="list"><a href="list.do">목록</a></div>
-    <div class="list"><a onclick="deleteBtn()">삭제</a></div>
-    <div class="list"><a href="modify.do?bno=${board.bno}">수정</a></div>
   </section>
 
   <footer>

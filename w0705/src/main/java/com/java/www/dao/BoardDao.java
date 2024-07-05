@@ -21,7 +21,7 @@ public class BoardDao {
 	Board board;
 	int bno,bgroup,bstep,bindent,bhit;
 	String id,btitle,bcontent,bfile;
-	private Timestamp bdate;
+	Timestamp bdate;
 	ArrayList<Board> list = new ArrayList<Board>();
 	String query;
 	
@@ -142,7 +142,30 @@ public class BoardDao {
 		return;
 	}//deleteOne
 
-	
+	//게시글 수정하기 메소드
+	public void update(int bno, String btitle, String bcontent, String bfile) {
+		try {
+			conn = getConnection(); //커넥션 메소드 호출
+			query = "update board set btitle=?,bcontent=?,bfile=? where bno=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, btitle); //btitle
+			pstmt.setString(2, bcontent); //bcontent
+			pstmt.setString(3, bfile); //bfile
+			pstmt.setInt(4, bno); //bno
+			int result = pstmt.executeUpdate(); //- insert,update,delete
+			System.out.println("executeUpdate 결과 : "+result);
+			
+		} catch (Exception e) {	e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2){e2.printStackTrace();}
+		}
+		return;
+		
+	}//update
 	
 	
 	//-------------------------------------
@@ -158,6 +181,10 @@ public class BoardDao {
 		return connection;
 	}//getConnection
 	//-------------------------------------
+
+	
+
+	
 
 		
 	

@@ -10,10 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.www.service.BoardDeleteService;
+import com.java.www.service.BoardDoModifyService;
 import com.java.www.service.BoardListService;
+import com.java.www.service.BoardModifyService;
 import com.java.www.service.BoardReadService;
 import com.java.www.service.BoardService;
 import com.java.www.service.BoardWriteService;
+import com.java.www.service.MemberLoginService;
+import com.java.www.service.MemberService;
 
 
 @WebServlet("*.do")
@@ -28,11 +32,16 @@ public class FrontController extends HttpServlet {
 		String fileName = uri.substring(contextPath.length());
 		System.out.println("클릭된 파일이름 : "+fileName);
 		BoardService boardService = null;
+		MemberService memberService = null;
 		
 		if(fileName.equals("/index.do")) {
 			url = "index.jsp";
 		}else if(fileName.equals("/login.do")){
 			url = "login.jsp";
+		}else if(fileName.equals("/doLogin.do")){
+			memberService = new MemberLoginService();
+			memberService.execute(request, response);
+			response.sendRedirect("index.do");
 		}else if(fileName.equals("/join01_terms.do")){
 			url = "join01_terms.jsp";
 		}else if(fileName.equals("/write.do")){
@@ -46,6 +55,14 @@ public class FrontController extends HttpServlet {
 			boardService = new BoardReadService();
 			boardService.execute(request, response);
 			url = "read.jsp";
+		}else if(fileName.equals("/modify.do")){
+			boardService = new BoardModifyService();
+			boardService.execute(request, response);
+			url = "modify.jsp";
+		}else if(fileName.equals("/doModify.do")){
+			boardService = new BoardDoModifyService();
+			boardService.execute(request, response);
+			url = "update.jsp";
 		}else if(fileName.equals("/delete.do")){
 			System.out.println("BoardDeleteService 호출");
 			boardService = new BoardDeleteService();

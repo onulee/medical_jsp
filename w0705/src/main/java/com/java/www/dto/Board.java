@@ -17,6 +17,12 @@ public class Board {
 	
 	//생성자
 	public Board() {}
+	public Board(int bno, String btitle, String bcontent, String bfile) {
+		this.bno = bno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bfile = bfile;
+	}
 	public Board(int bno, String id, String btitle, String bcontent, Timestamp bdate, int bgroup, int bstep,
 			int bindent, int bhit, String bfile) {
 		super();
