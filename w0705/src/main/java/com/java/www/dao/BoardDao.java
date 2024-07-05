@@ -122,6 +122,29 @@ public class BoardDao {
 		return board;
 	}//selectOne
 	
+	// 게시글 1개 삭제하기 메소드
+	public void deleteOne(int bno) {
+		try {
+			conn = getConnection(); //커넥션 메소드 호출
+			query = "delete board where bno=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bno); //bno
+			int result = pstmt.executeUpdate(); //- insert,update,delete
+			System.out.println("delete 결과 : "+result);
+		} catch (Exception e) {	e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2){e2.printStackTrace();}
+		}
+		return;
+	}//deleteOne
+
+	
+	
+	
 	//-------------------------------------
 	//커넥션 풀에서 connection 객체 가져오기 메소드
 	public Connection getConnection() {
@@ -135,7 +158,8 @@ public class BoardDao {
 		return connection;
 	}//getConnection
 	//-------------------------------------
-	
+
+		
 	
 	
 	

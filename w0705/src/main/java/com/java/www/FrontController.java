@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.www.service.BoardDeleteService;
 import com.java.www.service.BoardListService;
 import com.java.www.service.BoardReadService;
 import com.java.www.service.BoardService;
@@ -45,6 +46,11 @@ public class FrontController extends HttpServlet {
 			boardService = new BoardReadService();
 			boardService.execute(request, response);
 			url = "read.jsp";
+		}else if(fileName.equals("/delete.do")){
+			System.out.println("BoardDeleteService 호출");
+			boardService = new BoardDeleteService();
+			boardService.execute(request, response);
+			url = "delete.jsp";
 		}else if(fileName.equals("/list.do")){
 			// 부모의 참조변수 = 자손의 객체를 다루는 것.
 			boardService = new BoardListService(); //객체선언

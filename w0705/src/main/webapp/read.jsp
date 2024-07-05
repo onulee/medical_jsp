@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/read.css">
+  <style>.list a{cursor: pointer;}</style>
+  <script type="text/javascript">
+    function deleteBtn(){
+    	if(confirm("게시글을 삭제하시겠습니까?")){
+    		location.href = "delete.do?bno=${board.bno}";
+    	}
+    }
+  </script>
 </head>
 
 <body>
@@ -26,7 +34,7 @@
   </header>
 
   <nav>
-    <div class="logo"></div>
+    <a href="index.do"><div class="logo"></div></a>
 
     <div id="search">
       <div class="search"></div><br>
@@ -71,9 +79,9 @@
       </tr>
     </table>
 
-    <div class="list">목록</div>
-    <div class="list">삭제</div>
-    <div class="list">수정</div>
+    <div class="list"><a href="list.do">목록</a></div>
+    <div class="list"><a onclick="deleteBtn()">삭제</a></div>
+    <div class="list"><a href="update.do">수정</a></div>
   </section>
 
   <footer>

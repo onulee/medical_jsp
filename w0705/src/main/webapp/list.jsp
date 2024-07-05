@@ -25,7 +25,7 @@
   </header>
 
   <nav>
-    <div class="logo"></div>
+    <a href="index.do"><div class="logo"></div></a>
 
     <div id="search">
       <div class="search"></div><br>
